@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DermaScan AI | Research Studio</title><link rel="stylesheet" href="/static/styles.css"></head>
+<body><div class="shell">
+<header><a class="brand" href="/">◈ <span>DermaScan <b>AI</b></span></a><span class="tag">RESEARCH PROTOTYPE · V2.0</span></header>
+<main>
+<section class="hero"><div><p class="eyebrow">AI-ASSISTED SKIN IMAGE RESEARCH</p><h1>Understand the image.<br><em>Respect uncertainty.</em></h1><p class="lead">An experimental image-classification workspace built for transparent research, model evaluation and responsible education.</p><div class="status" id="modelStatus">Checking model status…</div></div>
+<div class="orb"><div class="orb-inner">DS<span>AI</span></div></div></section>
+<section class="workspace">
+<div class="panel upload-panel"><div class="panel-head"><div><p class="eyebrow">01 / IMAGE INPUT</p><h2>Start an image review</h2></div><span class="step">01</span></div>
+<div id="dropzone" class="dropzone"><div class="upload-icon">＋</div><h3>Drop a skin image here</h3><p>or choose an image from your device · JPG, PNG, WEBP · max 8 MB</p><input id="fileInput" type="file" accept="image/*" hidden><button id="chooseBtn" class="primary">Choose image</button><img id="preview" alt="Selected image preview" hidden></div>
+<div class="actions"><button id="analyzeBtn" class="primary" disabled>Analyze image <span>→</span></button><button id="clearBtn" class="secondary">Clear</button></div>
+<p class="hint">Use a clear, well-lit image. Avoid including faces or identifying details.</p></div>
+<div class="panel result-panel"><div class="panel-head"><div><p class="eyebrow">02 / ANALYSIS OUTPUT</p><h2>Research result</h2></div><span class="step">02</span></div><div id="result" class="empty"><div class="empty-mark">◎</div><h3>Awaiting image</h3><p>Your analysis will appear here. A trained model is required for experimental classification.</p></div></div>
+</section>
+<section class="lower"><article class="mini"><p class="eyebrow">MODEL TRANSPARENCY</p><h3>Know what powers the result.</h3><p id="modelInfo">Model information loading…</p><a href="/health" target="_blank">View system health ↗</a></article>
+<article class="mini"><p class="eyebrow">RESPONSIBLE RESEARCH</p><h3>No forced answers.</h3><p>Images outside the supported categories or uncertain results should be treated cautiously. This prototype does not provide medical diagnoses.</p></article></section>
+<footer><span>DERMASCAN AI © 2026</span><span>Experimental research software · Not for clinical use</span></footer>
+</main></div><script src="/static/app.js"></script></body></html>

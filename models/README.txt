@@ -1,0 +1,1 @@
+No trained weights are included. Train only with a properly licensed, accurately labelled dataset. See README.md.

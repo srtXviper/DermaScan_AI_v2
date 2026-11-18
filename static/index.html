@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DermaScan AI — Research Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <a class="brand" href="#overview"><span class="brand-symbol">✳</span><span>DermaScan <b>AI</b><small>RESEARCH STUDIO</small></span></a>
+  <p class="nav-label">WORKSPACE</p>
+  <a class="nav-item active" href="#overview"><span>⌂</span> Overview</a>
+  <a class="nav-item" href="#scanner"><span>⌗</span> Image Lab <i class="nav-dot"></i></a>
+  <a class="nav-item" href="#history"><span>◷</span> Session history</a>
+  <p class="nav-label">LEARN</p>
+  <a class="nav-item" href="#library"><span>▦</span> Condition library</a>
+  <a class="nav-item" href="#about"><span>◈</span> About the model</a>
+  <div class="sidebar-bottom"><div class="sidebar-status"><span class="pulse"></span><span id="modelStatus">Checking model…</span></div><small>STUDENT RESEARCH PROJECT<br>NOT FOR CLINICAL USE</small></div>
+</aside>
+<main class="main">
+<header class="topbar"><div class="breadcrumb">DermaScan AI <span>/</span> <strong>Research workspace</strong></div><div class="top-actions"><span class="pill"><span class="pulse"></span> Prototype</span><a class="top-link" href="/health" target="_blank">System health ↗</a></div></header>
+<section id="overview" class="section">
+<div class="hero">
+  <div class="hero-copy"><p class="eyebrow">AI SKIN IMAGE EXPLORATION</p><h1>See the signal.<br><em>Know the limits.</em></h1>
+  <p>Explore an experimental image-classification pipeline in a transparent, educational environment. This prototype is designed to demonstrate a workflow—not to diagnose skin conditions.</p>
+  <div class="hero-buttons"><a class="button primary" href="#scanner">Start a scan <span>→</span></a><a class="button ghost" href="#about">Explore the model</a></div>
+  </div>
+  <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orb-core"><div class="crosshair">＋</div><strong>DS<span>AI</span></strong><small>IMAGE LAB</small></div><span class="art-label label-a">VISION PIPELINE</span><span class="art-label label-b">RESNET · 18</span></div>
+</div>
+<div class="stat-grid">
+  <article class="stat-card"><div class="stat-head"><span>MODEL ARCHITECTURE</span><span class="stat-icon">◈</span></div><strong>ResNet18</strong><small>Convolutional neural network</small></article>
+  <article class="stat-card"><div class="stat-head"><span>SUPPORTED LABELS</span><span class="stat-icon">▦</span></div><strong id="classCount">13</strong><small>Dataset categories configured</small></article>
+  <article class="stat-card"><div class="stat-head"><span>ANALYSES THIS SESSION</span><span class="stat-icon">◷</span></div><strong id="scanCount">0</strong><small>Images processed in this tab</small></article>
+  <article class="stat-card"><div class="stat-head"><span>VALIDATION</span><span class="stat-icon warn-icon">!</span></div><strong class="not-validated">Not validated</strong><small>Research prototype · no clinical validation</small></article>
+</div>
+</section>
+<section id="scanner" class="section scanner-section">
+<div class="section-heading"><div><p class="eyebrow">01 / IMAGE LAB</p><h2>Image review workspace</h2><p>Use a local image or capture a new frame from your camera.</p></div><span class="section-index">INPUT → OUTPUT</span></div>
+<div class="lab-grid">
+<div class="card input-card">
+<div class="card-title"><div><span class="step-chip">INPUT</span><h3>Image source</h3></div><span class="card-muted">JPG · PNG · WEBP</span></div>
+<div class="source-switch"><button id="uploadMode" class="source-tab active">▧ Upload image</button><button id="cameraMode" class="source-tab">◉ Camera</button></div>
+<div id="uploadPane" class="input-pane">
+<div id="dropzone" class="dropzone"><div class="drop-icon">⇧</div><h3>Drop an image to begin</h3><p>or browse from your device · max 8 MB</p><input id="fileInput" type="file" accept="image/*" hidden><button id="chooseBtn" class="button primary small">Browse files</button><img id="preview" alt="Selected image preview" hidden></div>
+</div>
+<div id="cameraPane" class="input-pane" hidden><div class="camera-frame"><video id="cameraVideo" autoplay playsinline muted></video><canvas id="cameraCanvas" hidden></canvas><div id="cameraPlaceholder" class="camera-placeholder"><span>◉</span><strong>Camera preview</strong><small>Enable camera access to capture a photo.</small></div><div class="camera-overlay"><span class="cam-corner top-left"></span><span class="cam-corner top-right"></span><span class="cam-corner bottom-left"></span><span class="cam-corner bottom-right"></span></div></div><div class="camera-actions"><button id="startCameraBtn" class="button secondary small">Start camera</button><button id="captureBtn" class="button primary small" disabled>Capture photo</button><button id="stopCameraBtn" class="button ghost small" disabled>Stop</button></div><p class="micro-note">Camera requires browser permission and HTTPS when hosted publicly (localhost is allowed).</p></div>
+<div class="file-meta" id="fileMeta" hidden></div>
+<div class="input-actions"><button id="analyzeBtn" class="button primary" disabled>Run experimental analysis <span>→</span></button><button id="clearBtn" class="button ghost">Reset</button></div>
+<p class="safety-note"><span>ⓘ</span> Use a clear, well-lit image. Avoid faces, tattoos, jewelry and identifying details where possible.</p>
+</div>
+<div class="card result-card-panel"><div class="card-title"><div><span class="step-chip output">OUTPUT</span><h3>Model response</h3></div><span class="card-muted">EXPERIMENTAL</span></div><div id="result" class="result-empty"><div class="result-icon">◈</div><h3>Awaiting input</h3><p>Select or capture an image to see the model's output here.</p><div class="result-placeholder-lines"><i></i><i></i><i></i></div></div></div>
+</div>
+</section>
+<section id="history" class="section">
+<div class="section-heading"><div><p class="eyebrow">02 / SESSION ACTIVITY</p><h2>Recent analyses</h2><p>History is temporary and stays in this page session only.</p></div><button id="clearHistoryBtn" class="button ghost small">Clear history</button></div>
+<div id="historyList" class="history-list"><div class="history-empty"><span>◷</span><p>No analyses yet. Your recent results will appear here.</p></div></div>
+</section>
+<section id="library" class="section">
+<div class="section-heading"><div><p class="eyebrow">03 / LEARNING LIBRARY</p><h2>Explore skin conditions</h2><p>Brief educational summaries of the categories in this demo dataset. These are not diagnostic guides.</p></div></div>
+<div class="condition-grid">
+<article class="condition-card"><div class="condition-symbol">01</div><h3>Acne</h3><p>Inflammatory and non-inflammatory changes commonly involving hair follicles and oil glands.</p><span>ACNE</span></article>
+<article class="condition-card"><div class="condition-symbol">02</div><h3>Eczema</h3><p>A group of conditions that may cause itchy, dry, irritated or inflamed skin.</p><span>ECZEMA</span></article>
+<article class="condition-card"><div class="condition-symbol">03</div><h3>Psoriasis</h3><p>A chronic immune-mediated condition that can cause thickened, scaly skin patches.</p><span>PSORIASIS</span></article>
+<article class="condition-card"><div class="condition-symbol">04</div><h3>Rosacea</h3><p>A condition often involving facial redness, flushing and sometimes visible blood vessels.</p><span>ROSACEA</span></article>
+<article class="condition-card"><div class="condition-symbol">05</div><h3>Ringworm</h3><p>A fungal skin infection; despite its name, it is not caused by a worm.</p><span>RINGWORM</span></article>
+<article class="condition-card"><div class="condition-symbol">06</div><h3>Vitiligo</h3><p>Loss of pigment in patches of skin, related to changes in pigment-producing cells.</p><span>VITILIGO</span></article>
+<article class="condition-card"><div class="condition-symbol">07</div><h3>Scabies</h3><p>An infestation caused by a microscopic mite, often associated with intense itching.</p><span>SCABIES</span></article>
+<article class="condition-card"><div class="condition-symbol">08</div><h3>Impetigo</h3><p>A contagious superficial bacterial skin infection that may cause crusted sores.</p><span>IMPETIGO</span></article>
+<article class="condition-card"><div class="condition-symbol">09</div><h3>Herpes</h3><p>Viral infections that can cause grouped blisters or sores. Clinical evaluation is important.</p><span>HERPES</span></article>
+<article class="condition-card"><div class="condition-symbol">10</div><h3>Cellulitis</h3><p>A deeper bacterial skin infection that can spread and may require urgent medical care.</p><span>CELLULITIS</span></article>
+<article class="condition-card"><div class="condition-symbol">11</div><h3>Hyperpigmentation</h3><p>Areas of skin that appear darker due to increased pigment; causes vary.</p><span>DARK SPOTS</span></article>
+<article class="condition-card"><div class="condition-symbol">12</div><h3>Urticaria / hives</h3><p>Raised, often itchy welts that can appear and fade over hours.</p><span>URTICARIA</span></article>
+<article class="condition-card"><div class="condition-symbol">13</div><h3>Normal skin</h3><p>A dataset label representing images categorized as normal; not proof of health.</p><span>NORMAL</span></article>
+</div>
+</section>
+<section id="about" class="section about-section">
+<div class="section-heading"><div><p class="eyebrow">04 / MODEL TRANSPARENCY</p><h2>Inside the experiment</h2><p>Learn what this prototype does, and what its output can’t establish.</p></div></div>
+<div class="about-grid"><article class="card about-card"><span class="about-icon">◈</span><h3>How the pipeline works</h3><ol><li>Image is uploaded or captured in your browser.</li><li>Backend validates and resizes the image.</li><li>ResNet18 produces scores for configured labels.</li><li>The UI displays the highest scoring label as a model output.</li></ol></article>
+<article class="card about-card"><span class="about-icon">⚑</span><h3>Important limitations</h3><ul><li>Training used a small demo sample.</li><li>Model scores are not calibrated probabilities.</li><li>Performance has not been clinically validated.</li><li>Lighting, skin tone, image quality and dataset bias can affect outputs.</li></ul></article></div>
+<div class="disclaimer"><strong>Educational prototype only.</strong> This tool cannot diagnose, rule out, or treat any condition. Do not rely on it for medical decisions. If you have a new, worsening, painful, spreading, bleeding, or concerning skin change, seek care from a qualified clinician.</div>
+</section>
+<footer class="footer"><span>DERMASCAN AI · STUDENT PROJECT</span><span>Built for transparent AI learning <b>◆</b></span></footer>
+</main>
+</div>
+<script src="/static/app.js"></script>
+</body></html>
